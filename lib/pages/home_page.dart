@@ -47,12 +47,13 @@ class _HomePageState extends State<HomePage> {
                 elevation: 0.0,
               ),
               onPressed: () {
-                _getLocation().then((positon) {
+                _getLocation().then((position) {
                   setState(() {
-                    latitude = positon.latitude.toString();
-                    longitude = positon.longitude.toString();
+                    latitude = position.latitude.toString();
+                    longitude = position.longitude.toString();
                   });
                 });
+                _liveLocation();
               },
               child: Text(
                 "Get Location",
@@ -101,5 +102,19 @@ class _HomePageState extends State<HomePage> {
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
     return await Geolocator.getCurrentPosition();
+  }
+
+  void _liveLocation() {
+    final LocationSettings locationSettings = LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    );
+    Geolocator.getPositionStream(locationSettings: locationSettings)
+        .listen((Position position) {
+      setState(() {
+        latitude = position.latitude.toString();
+        longitude = position.longitude.toString();
+      });
+    });
   }
 }
