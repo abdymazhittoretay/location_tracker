@@ -9,8 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String latitude = "";
-  String longitude = "";
+  String latitude = "XXXXXXXX";
+  String longitude = "XXXXXXXX";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
