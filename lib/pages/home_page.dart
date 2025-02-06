@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -70,7 +71,9 @@ class _HomePageState extends State<HomePage> {
                       foregroundColor: Colors.blue,
                       elevation: 0.0,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      _goToLocation();
+                    },
                     child: Text(
                       "View Location",
                     ),
@@ -133,5 +136,11 @@ class _HomePageState extends State<HomePage> {
         longitude = position.longitude.toString();
       });
     });
+  }
+
+  void _goToLocation() async {
+    final Uri url = Uri.parse(
+        "https://www.google.com/maps/search/?api=1&query=$latitude,$longitude");
+    if (await canLaunchUrl(url)) await launchUrl(url);
   }
 }
