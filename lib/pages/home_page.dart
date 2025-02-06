@@ -59,6 +59,23 @@ class _HomePageState extends State<HomePage> {
                 "Get Location",
               ),
             ),
+            latitude != "XXXXXXXX"
+                ? ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      side: BorderSide(
+                        width: 1.0,
+                        color: Colors.black,
+                      ),
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.blue,
+                      elevation: 0.0,
+                    ),
+                    onPressed: () {},
+                    child: Text(
+                      "View Location",
+                    ),
+                  )
+                : SizedBox(),
           ],
         ),
       ),
